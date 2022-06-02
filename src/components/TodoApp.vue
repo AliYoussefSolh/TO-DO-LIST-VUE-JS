@@ -42,16 +42,13 @@
                             </p>
                         </td>
                         <td class="number_pr">
-                            <!-- <select name="fruit">
-                <option value="TO DO">TO DO</option>
-                <option value="IN PROGRESS">IN PROGRESS</option>
-                <option value="FINISHED">FINISHED</option>
-              </select> -->
+                    
                             <p class="text-danger" v-if="!task.isDisabled">
                                 PS: click on the status to edit it
                             </p>
                             <span
                                 @click="updateStatus(index)"
+                                @keydown.ctrl.83.prevent.stop="SubmitMethod"
                                 :class="{
                                     'text-danger': task.status === 'TO DO',
                                     'text-warning':
@@ -81,7 +78,7 @@
 
 <script>
 export default {
-    name: "HelloWorld",
+    name: "TodoApp",
 
     props: {
         msg: String,
@@ -123,13 +120,8 @@ export default {
                 this.tasks[i].isDisabled = true;
                 //  alert("fet");
             }
-            // else{
-            //   if (this.editedTask!==null){
-            //     this.tasks[this.editedTask].name=this.inputTask;
-            //     this.editedTask=null;
-            //   }
-            //   return;
-            // }
+            this.sortTasks();
+           
         },
         deleteTask(index) {
             //  alert("fet");
@@ -155,25 +147,15 @@ export default {
             }
             // alert("are you sure that u want this update?")
         },
-        // partition(tasks, start, end) {
-        //     // Taking the last element as the pivot
-        //     const pivotValue = tasks[end];
-        //     let pivotIndex = start;
-        //     for (let i = start; i < end; i++) {
-        //         if (tasks[i] < pivotValue) {
-        //             // Swapping elements
-        //             [tasks[i], tasks[pivotIndex]] = [tasks[pivotIndex], tasks[i]];
-        //             // Moving to next element
-        //             pivotIndex++;
-        //         }
-        //     }
-
-        //     // Putting the pivot value in the middle
-        //     [tasks[pivotIndex], tasks[end]] = [tasks[end], tasks[pivotIndex]];
-        //     return pivotIndex;
-        // }
+        sortTasks(){
+            this.tasks.sort(function(a,b){
+                return a.priority-b.priority;
+            });
+        }
+        
         
     }
+   
 };
 </script>
 <style scoped>
@@ -183,8 +165,8 @@ export default {
 .task_txt {
     width: 100%;
     height: 100%;
-    resize: none;
-    -webkit-box-sizing: border-box; 
+    resize: none; 
+     -webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box; 
     box-sizing: border-box; 
 }
