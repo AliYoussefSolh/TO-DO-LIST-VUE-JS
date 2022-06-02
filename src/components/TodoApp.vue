@@ -50,7 +50,7 @@
                   'text-danger': task.status === 'TO DO',
                   'text-warning': task.status === 'IN PROGRESS',
                   'text-success': task.status === 'FINISHED',
-                   'not_pointer':task.isDisabled,
+                 
                    'pointer':!task.isDisabled
 
                 }"
@@ -143,7 +143,5 @@ export default {
 .pointer {
   cursor: pointer;
 }
-.not_pointer{
-    cursor: default;
-}
+
 </style>
