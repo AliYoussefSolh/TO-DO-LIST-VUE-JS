@@ -1,5 +1,5 @@
 # project
-Beginner project to implement some functionaloties of vue js framework. It is a simple To do list that is implemented using vue js framework.
+Beginner project to implement some functionalities of vue js framework. It is a simple To do list that is implemented using vue js framework.
 
 ## Project setup
 ```
